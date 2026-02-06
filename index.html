@@ -1,8 +1,36 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">
+<script>
+    function move() {
+        document.getElementById("move").innerHTML = "\n \na";
+    }
+    function unmove() {
+        document.getElementById("move").innerHTML = "";
+    }
+    function location() {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    function showPosition(position) {
+        document.getElementById("location").innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+    }
+</script>
+<style>
+    #move {
+        color: cornsilk;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample HTML Page</title>
+    <title>Home</title>
 </head>
+<body>
+    <div id="menu">
+        <button onclick="window.location.href='pukeko.html'">Pukeko Page</button>
+    </div>
+    <h1 id="move"></h1>
+    <button onclick="location()" onmouseover="move()" onmouseout="unmove()">Awesome button</button>
+    <p id="location">a</p>
+</body>
 </html>

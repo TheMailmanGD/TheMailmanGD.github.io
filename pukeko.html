@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<style>
+.content {
+  overflow: auto;
+  position: relative;
+  color: red;
+}
+
+.content::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  background-image: url('pukeko images/2.jpg');
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+  filter: invert(100%);
+}
+</style>
+<script>
+    var pukeko = Math.floor(Math.random() * 7) + 1;
+    var a = "pukeko images/" + pukeko + ".jpg";
+    // var pukeko = 1;
+    function changeimage() {
+        // if (pukeko != 7) {
+        //     pukeko = pukeko + 1;
+        // } else {
+        //     pukeko = 1;
+        // }
+        pukeko = Math.floor(Math.random() * 7) + 1;
+        document.getElementById("pukekoimage").src = "pukeko images/" + pukeko + ".jpg";
+        document.getElementById("content").style.filter = "blur(5px)";
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome pukekos</title>
+</head>
+<body>
+    <div class="content">
+        <h1>pukeko</h1>
+        <p>we love pukeko</p>
+        <button onclick="changeimage()">epic pukeko button</button>
+    </div>
+</body>
+<li></li>
+<img id="pukekoimage" src="pukeko images/1.jpg" alt="pukeko image" length="200" width="200">
+</html>
