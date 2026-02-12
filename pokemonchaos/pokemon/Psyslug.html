@@ -1,5 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    var hp = 60;
+    var attack = 20;
+    var defense = 90;
+    var specialAttack = 30;
+    var specialDefense = 90;
+    var speed = 20;
+    function calculatebars() {
+        document.getElementById("hp").style.width = hp * 2 + "px";
+        document.getElementById("attack").style.width = attack * 2 + "px";
+        document.getElementById("defense").style.width = defense * 2 + "px";
+        document.getElementById("specialAttack").style.width = specialAttack * 2 + "px";
+        document.getElementById("specialDefense").style.width = specialDefense * 2 + "px";
+        document.getElementById("speed").style.width = speed * 2 + "px";
+    }
+    window.onload = calculatebars;
+</script>
+<style>
+    .statnames {
+        display: inline-block;
+        width: 20px;
+        text-align: right;
+    }
+    span {
+        display: inline-block;
+        height: 20px;
+        background-color: red;
+    }
+</style>
     <body>
         <h1>Psyslug</h1>
         <p>Type: Psychic</p>
@@ -7,5 +36,15 @@
         <p>Hidden Ability: Psychic Surge</p>
         <p>Height: 0.4m</p>
         <p>Weight: 3.7kg</p>
+        <div class="stats-row">
+            <div class="statnames">
+                <p>HP: <span id="hp"></span><p>
+                <p>Atk: <span id="attack"></span></p>
+                <p>Def: <span id="defense"></span></p>
+                <p>SpA: <span id="specialAttack"></span></p>
+                <p>Spd: <span id="specialDefense"></span></p>
+                <p>Spe: <span id="speed"></span></p>
+            </div>
+        </div>
     </body>
 </html>
