@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #Search {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+#pokemonlist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#pokemonlist li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#pokemonlist li a:hover {
+  background-color: #eee;
+}
+</style>
+<script>
+function findsearcheditem() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("Search");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("pokemonlist");
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+<input type="text" id="Search" onkeyup="findsearcheditem()" placeholder="Search.." title="Enter the name of a pokemon">
+
+<ul id="pokemonlist">
+  <li><a href="pokemon/Psyslug.html">Psyslug</a></li>
+  <li><a href="#">Psyculimax</a></li>
+  <li><a href="#">Ascendropod</a></li>
+  <li><a href="#">Stingpeon</a></li>
+  <li><a href="#">Durodoma</a></li>
+  <li><a href="#">Scowrathnid</a></li>
+  <li><a href="#">Rheapird</a></li>
+  <li><a href="#">Avieerie</a></li>
+  <li><a href="#">Grimoweary</a></li>
+</ul>
+</html>
