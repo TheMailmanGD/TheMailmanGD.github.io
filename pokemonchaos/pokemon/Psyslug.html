@@ -8,7 +8,7 @@
     var specialDefense = 90;
     var speed = 20;
     function calculatebars() {
-        document.getElementById("hp").style.width = hp * 2 + "px";
+        document.getElementById("hp").style.width = hp + "px";
         document.getElementById("attack").style.width = attack * 2 + "px";
         document.getElementById("defense").style.width = defense * 2 + "px";
         document.getElementById("specialAttack").style.width = specialAttack * 2 + "px";
@@ -33,12 +33,12 @@
         <h1>Psyslug</h1>
         <p>Type: Psychic</p>
         <p>Ability: Shell Armor</p>
-        <p>Hidden Ability: Psychic Surge</p>
+        <p>Hidden Ability: Magic Bounce</p>
         <p>Height: 0.4m</p>
         <p>Weight: 3.7kg</p>
         <div class="stats-row">
             <div class="statnames">
-                <p>HP: <span id="hp"></span><p>
+                <p>HP:⠀ <span id="hp"></span><p>
                 <p>Atk: <span id="attack"></span></p>
                 <p>Def: <span id="defense"></span></p>
                 <p>SpA: <span id="specialAttack"></span></p>
