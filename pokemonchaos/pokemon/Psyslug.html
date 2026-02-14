@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
+    function titleCase(s) {
+    return s.toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
 
     var pokemonData;
 
@@ -28,31 +34,31 @@
         document.getElementById("speedvalue").innerText = pokemonData.spe;
     }
     function settext() {
-        document.getElementById("name").innerText = pokemonData.pkm;
+        document.getElementById("name").innerText = titleCase(pokemonData.pkm);
         if (pokemonData.type2 != "none") {
-            document.getElementById("type").innerText = pokemonData.type1 + "/" + pokemonData.type2;
+            document.getElementById("type").innerText = titleCase(pokemonData.type1) + "/" + titleCase(pokemonData.type2);
         } else {
-            document.getElementById("type").innerText = pokemonData.type1;
+            document.getElementById("type").innerText = titleCase(pokemonData.type1);
         }
-        document.getElementById("ability1").innerText = "Ability: " + pokemonData.ability1;
+        document.getElementById("ability1").innerText = "Ability: " + titleCase(pokemonData.ability1);
         if (pokemonData.ability2 != "none") {
-            document.getElementById("ability2").innerText = "Secondary Ability: " + pokemonData.ability2;
+            document.getElementById("ability2").innerText = "Secondary Ability: " + titleCase(pokemonData.ability2);
         } else {
             document.getElementById("ability2").innerText = "";
         }
         if (pokemonData.hiddenability != "none") {
-            document.getElementById("hiddenability").innerText = "Hidden Ability: " + pokemonData.hiddenability;
+            document.getElementById("hiddenability").innerText = "Hidden Ability: " + titleCase(pokemonData.hiddenability);
         } else {
             document.getElementById("hiddenability").innerText = "";
         }
         document.getElementById("height").innerText = "Height: " + pokemonData.height;
         document.getElementById("weight").innerText = "Weight: " + pokemonData.weight;
 
-        document.getElementById("classification").innerText = "Classification: " + pokemonData.classification;
+        document.getElementById("classification").innerText = "Classification: " + titleCase(pokemonData.classification);
         document.getElementById("catchrate").innerText = "Catch Rate: " + pokemonData.catchrate;
         document.getElementById("evolutionlv").innerText = "Evolves at level " + pokemonData.evolutionlevel;
         document.getElementById("dex").innerText = pokemonData.dex;
-        document.getElementById("habitat").innerText = "This pokemon lives at " + pokemonData.habitat[0] + " in " + pokemonData.habitat[1];
+        document.getElementById("habitat").innerText = "This pokemon can be found at " + titleCase(pokemonData.habitat[0]) + " in the " + titleCase(pokemonData.habitat[1]);
     }
 </script>
 <style>
