@@ -10,7 +10,6 @@
 
     var pokemonData;
 
-    // Get pokemon name from URL query parameter, default to 'psyslug'
     const urlParams = new URLSearchParams(window.location.search);
     const pokemonName = urlParams.get('pokemon') || 'psyslug';
 
@@ -86,56 +85,54 @@
 </style>
     <body>
         <div class="maininfo">
-            <h1 id="name">Psyslug</h1>
-            <p id="type">Type: Psychic</p>
-            <p id="ability1">Ability: Shell Armor</p>
+            <h1 id="name">?</h1>
+            <p id="type">Type: ?</p>
+            <p id="ability1">Ability: ?</p>
             <p id="ability2">Secondary Ability: None</p>
-            <p id="hiddenability">Hidden Ability: Magic Bounce</p>
-            <p id="height">Height: 0.4m</p>
-            <p id="weight">Weight: 3.7kg</p>
+            <p id="hiddenability">Hidden Ability: ?</p>
+            <p id="height">Height: ?m</p>
+            <p id="weight">Weight: ?kg</p>
         </div>
         <div class="otherinfo">
-            <p id="classification">Classification: Psychic Slug</p>
-            <p id="catchrate">Catch Rate: 45</p>
-            <p id="evolutionlv">Evolves at level 15</p>
+            <p id="classification">Classification: ?</p>
+            <p id="catchrate">Catch Rate: ?</p>
+            <p id="evolutionlv">Evolves at level ?</p>
             <p id="dex">This pokemon ______</p>
             <p id="habitat">This pokemon lives at ____ in ______</p>
         </div>
-        <div class="stats-row">
-            <div class="statnames">
-                <table>
-                    <tr>
-                        <td>HP:</td>
-                        <td id="hpvalue">0</td>
-                        <td><span id="hp"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Atk:</td>
-                        <td id="attackvalue">0</td>
-                        <td><span id="attack"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Def:</td>
-                        <td id="defensevalue">0</td>
-                        <td><span id="defense"></span></td>
-                    </tr>
-                    <tr>
-                        <td>SpA:</td>
-                        <td id="specialAttackvalue">0</td>
-                        <td><span id="specialAttack"></span></td>
-                    </tr>
-                    <tr>
-                        <td>SpD:</td>
-                        <td id="specialDefensevalue">0</td>
-                        <td><span id="specialDefense"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Spe:</td>
-                        <td id="speedvalue">0</td>
-                        <td><span id="speed"></span></td>
-                    </tr>
-                </table>
-            </div>
+        <div class="statnames">
+            <table>
+                <tr>
+                    <td>HP:</td>
+                    <td id="hpvalue">0</td>
+                    <td><span id="hp"></span></td>
+                </tr>
+                <tr>
+                    <td>Atk:</td>
+                    <td id="attackvalue">0</td>
+                    <td><span id="attack"></span></td>
+                </tr>
+                <tr>
+                    <td>Def:</td>
+                    <td id="defensevalue">0</td>
+                    <td><span id="defense"></span></td>
+                </tr>
+                <tr>
+                    <td>SpA:</td>
+                    <td id="specialAttackvalue">0</td>
+                    <td><span id="specialAttack"></span></td>
+                </tr>
+                <tr>
+                    <td>SpD:</td>
+                    <td id="specialDefensevalue">0</td>
+                    <td><span id="specialDefense"></span></td>
+                </tr>
+                <tr>
+                    <td>Spe:</td>
+                    <td id="speedvalue">0</td>
+                    <td><span id="speed"></span></td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
