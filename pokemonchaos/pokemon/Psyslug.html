@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="../global.js">
-    jsondata = json;
-</script>
 <script>
     function titleCase(s) {
     return s.toLowerCase()
@@ -13,7 +10,7 @@
 
     var pokemonData;
 
-    fetch(jsondata)
+    fetch('./JSON/Pokemon/psyslug.json')
         .then(response => response.json())
         .then(data => {
             pokemonData = data;

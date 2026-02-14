@@ -1,1 +1,0 @@
-var json = "./JSON/Pokemon/psyslug.json";
