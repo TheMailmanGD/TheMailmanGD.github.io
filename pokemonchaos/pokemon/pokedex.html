@@ -11,7 +11,7 @@
     var pokemonData;
 
     const urlParams = new URLSearchParams(window.location.search);
-    const pokemonName = urlParams.get('pokemon') || 'psyslug';
+    const pokemonName = urlParams.get('pokemon');
 
     fetch(`./JSON/Pokemon/${pokemonName}.json`)
         .then(response => response.json())
