@@ -10,13 +10,18 @@
 
     var pokemonData;
 
-    fetch('./JSON/Pokemon/psyslug.json')
+    // Get pokemon name from URL query parameter, default to 'psyslug'
+    const urlParams = new URLSearchParams(window.location.search);
+    const pokemonName = urlParams.get('pokemon') || 'psyslug';
+
+    fetch(`./JSON/Pokemon/${pokemonName}.json`)
         .then(response => response.json())
         .then(data => {
             pokemonData = data;
             calculatebars();
             settext();
-        });
+        })
+        .catch(error => console.error('Error loading pokemon data:', error));
 
     function calculatebars() {
         document.getElementById("hp").style.width = pokemonData.hp + "px";
