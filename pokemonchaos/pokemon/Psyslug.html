@@ -2,21 +2,23 @@
 <html lang="en">
 <script>
 
-    var hp = 60;
-    var attack = 20;
-    var defense = 90;
-    var specialAttack = 30;
-    var specialDefense = 90;
-    var speed = 20;
+    var pokemonData;
+
+    fetch('./JSON/Pokemon/psyslug.json')
+        .then(response => response.json())
+        .then(data => {
+            pokemonData = data;
+            calculatebars();
+        });
+
     function calculatebars() {
-        document.getElementById("hp").style.width = hp + "px";
-        document.getElementById("attack").style.width = attack + "px";
-        document.getElementById("defense").style.width = defense + "px";
-        document.getElementById("specialAttack").style.width = specialAttack + "px";
-        document.getElementById("specialDefense").style.width = specialDefense + "px";
-        document.getElementById("speed").style.width = speed + "px";
+        document.getElementById("hp").style.width = pokemonData.hp + "px";
+        document.getElementById("attack").style.width = pokemonData.atk + "px";
+        document.getElementById("defense").style.width = pokemonData.def + "px";
+        document.getElementById("specialAttack").style.width = pokemonData.spa + "px";
+        document.getElementById("specialDefense").style.width = pokemonData.spd + "px";
+        document.getElementById("speed").style.width = pokemonData.spe + "px";
     }
-    window.onload = calculatebars;
 </script>
 <style>
     .statnames {
