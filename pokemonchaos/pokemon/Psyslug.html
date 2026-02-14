@@ -18,6 +18,13 @@
         document.getElementById("specialAttack").style.width = pokemonData.spa + "px";
         document.getElementById("specialDefense").style.width = pokemonData.spd + "px";
         document.getElementById("speed").style.width = pokemonData.spe + "px";
+        
+        document.getElementById("hpvalue").innerText = pokemonData.hp;
+        document.getElementById("attackvalue").innerText = pokemonData.atk;
+        document.getElementById("defensevalue").innerText = pokemonData.def;
+        document.getElementById("specialAttackvalue").innerText = pokemonData.spa;
+        document.getElementById("specialDefensevalue").innerText = pokemonData.spd;
+        document.getElementById("speedvalue").innerText = pokemonData.spe;
     }
 </script>
 <style>
@@ -47,26 +54,32 @@
                 <table>
                     <tr>
                         <td>HP:</td>
+                        <td id="hpvalue">0</td>
                         <td><span id="hp"></span></td>
                     </tr>
                     <tr>
                         <td>Atk:</td>
+                        <td id="attackvalue">0</td>
                         <td><span id="attack"></span></td>
                     </tr>
                     <tr>
                         <td>Def:</td>
+                        <td id="defensevalue">0</td>
                         <td><span id="defense"></span></td>
                     </tr>
                     <tr>
                         <td>SpA:</td>
+                        <td id="specialAttackvalue">0</td>
                         <td><span id="specialAttack"></span></td>
                     </tr>
                     <tr>
                         <td>SpD:</td>
+                        <td id="specialDefensevalue">0</td>
                         <td><span id="specialDefense"></span></td>
                     </tr>
                     <tr>
                         <td>Spe:</td>
+                        <td id="speedvalue">0</td>
                         <td><span id="speed"></span></td>
                     </tr>
                 </table>
