@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
+
     var hp = 60;
     var attack = 20;
     var defense = 90;
@@ -9,11 +10,11 @@
     var speed = 20;
     function calculatebars() {
         document.getElementById("hp").style.width = hp + "px";
-        document.getElementById("attack").style.width = attack * 2 + "px";
-        document.getElementById("defense").style.width = defense * 2 + "px";
-        document.getElementById("specialAttack").style.width = specialAttack * 2 + "px";
-        document.getElementById("specialDefense").style.width = specialDefense * 2 + "px";
-        document.getElementById("speed").style.width = speed * 2 + "px";
+        document.getElementById("attack").style.width = attack + "px";
+        document.getElementById("defense").style.width = defense + "px";
+        document.getElementById("specialAttack").style.width = specialAttack + "px";
+        document.getElementById("specialDefense").style.width = specialDefense + "px";
+        document.getElementById("speed").style.width = speed + "px";
     }
     window.onload = calculatebars;
 </script>
@@ -25,8 +26,11 @@
     }
     span {
         display: inline-block;
-        height: 20px;
+        height: 12px;
         background-color: red;
+    }
+    tr {
+        text-align: left;
     }
 </style>
     <body>
@@ -38,12 +42,32 @@
         <p>Weight: 3.7kg</p>
         <div class="stats-row">
             <div class="statnames">
-                <p>HP:⠀ <span id="hp"></span><p>
-                <p>Atk: <span id="attack"></span></p>
-                <p>Def: <span id="defense"></span></p>
-                <p>SpA: <span id="specialAttack"></span></p>
-                <p>Spd: <span id="specialDefense"></span></p>
-                <p>Spe: <span id="speed"></span></p>
+                <table>
+                    <tr>
+                        <td>HP:</td>
+                        <td><span id="hp"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Atk:</td>
+                        <td><span id="attack"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Def:</td>
+                        <td><span id="defense"></span></td>
+                    </tr>
+                    <tr>
+                        <td>SpA:</td>
+                        <td><span id="specialAttack"></span></td>
+                    </tr>
+                    <tr>
+                        <td>SpD:</td>
+                        <td><span id="specialDefense"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Spe:</td>
+                        <td><span id="speed"></span></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </body>
