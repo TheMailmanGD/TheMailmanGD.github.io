@@ -21,6 +21,18 @@
             settext();
         })
         .catch(error => console.error('Error loading pokemon data:', error));
+    
+    function calculatebarcolour(statid, statvalue) {
+        if (statvalue <= 75) {
+            document.getElementById(statid).style.backgroundColor = `rgb(${255 - statvalue * 3.4}, ${statvalue * 3.4}, 0)`;
+        } 
+        elif (statvalue > 75 && statvalue <= 150) {
+            document.getElementById(statid).style.backgroundColor = `rgb(0, ${255 - (statvalue - 75) * 3.4}, ${(statvalue - 75) * 3.4})`;
+        } 
+        else {
+            document.getElementById(statid).style.backgroundColor = `rgb(${(statvalue - 150) * 3.4}, 0, ${255 - (statvalue - 150) * 3.4})`;
+        }
+    }
     function calculatebars() {
         document.getElementById("hp").style.width = pokemonData.hp + "px";
         document.getElementById("attack").style.width = pokemonData.atk + "px";
