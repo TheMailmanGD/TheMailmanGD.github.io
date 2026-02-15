@@ -21,7 +21,6 @@
             settext();
         })
         .catch(error => console.error('Error loading pokemon data:', error));
-
     function calculatebars() {
         document.getElementById("hp").style.width = pokemonData.hp + "px";
         document.getElementById("attack").style.width = pokemonData.atk + "px";
