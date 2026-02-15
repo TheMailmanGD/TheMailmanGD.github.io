@@ -17,6 +17,12 @@
         .then(response => response.json())
         .then(data => {
             pokemonData = data;
+            calculatebarcolour("hp", pokemonData.hp);
+            calculatebarcolour("attack", pokemonData.atk);
+            calculatebarcolour("defense", pokemonData.def);
+            calculatebarcolour("specialAttack", pokemonData.spa);
+            calculatebarcolour("specialDefense", pokemonData.spd);
+            calculatebarcolour("speed", pokemonData.spe);
             calculatebars();
             settext();
         })
