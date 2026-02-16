@@ -29,14 +29,19 @@
         .catch(error => console.error('Error loading pokemon data:', error));
     
     function calculatebarcolour(statid, statvalue) {
-        if (statvalue <= 75) {
-            document.getElementById(statid).style.backgroundColor = `rgb(${255 - statvalue * 3.4}, ${statvalue * 3.4}, 0)`;
-        } 
-        else if (statvalue > 75 && statvalue <= 150) {
-            document.getElementById(statid).style.backgroundColor = `rgb(0, ${255 - (statvalue - 75) * 3.4}, ${(statvalue - 75) * 3.4})`;
-        } 
+        if (statvalue < 30) {
+            document.getElementById(statid).style.backgroundColor = "red";
+        } else if (statvalue < 60) {
+            document.getElementById(statid).style.backgroundColor = "orange";
+        } else if (statvalue < 90) {
+            document.getElementById(statid).style.backgroundColor = "yellow";
+        } else if (statvalue < 120) {
+            document.getElementById(statid).style.backgroundColor = "lightgreen";
+        } else if (statvalue < 150) {
+            document.getElementById(statid).style.backgroundColor = "green";
+        }
         else {
-            document.getElementById(statid).style.backgroundColor = `rgb(${(statvalue - 150) * 3.4}, 0, ${255 - (statvalue - 150) * 3.4})`;
+            document.getElementById(statid).style.backgroundColor = "lightblue";
         }
     }
     function calculatebars() {
