@@ -12,6 +12,15 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const pokemonName = urlParams.get('pokemon');
+    const pokemonMoveset = urlParams.get('pokemon') + "ms";
+
+    fetch(`./JSON/Movesets/${pokemonMoveset}.json`)
+        .then(response => response.json())
+        .then(data => {
+            alert(data);
+            createmovesettable(data);
+        })
+        .catch(error => console.error('Error loading moveset data:', error));
 
     fetch(`./JSON/Pokemon/${pokemonName}.json`)
         .then(response => response.json())
@@ -28,6 +37,9 @@
         })
         .catch(error => console.error('Error loading pokemon data:', error));
     
+    function createmovesettable(movesetdata) {
+        document.getElementById("test").innerHTML = movesetdata.levelup;
+    }
     function calculatebarcolour(statid, statvalue) {
         if (statvalue < 30) {
             document.getElementById(statid).style.backgroundColor = "red";
@@ -41,7 +53,7 @@
             document.getElementById(statid).style.backgroundColor = "green";
         }
         else {
-            document.getElementById(statid).style.backgroundColor = "lightblue";
+            document.getElementById(statid).style.backgroundColor = "rgb(45, 220, 219)";
         }
     }
     function calculatebars() {
@@ -160,5 +172,18 @@
                 </tr>
             </table>
         </div>
+        <div class="moveset">
+            <table>
+                <tr>
+                    <th>Level:</th>
+                    <th>Name:</th>
+                    <th>Type:</th>
+                    <th>Category:</th>
+                    <th>Power:</th>
+                    <th>Accuracy:</th>
+                </tr>
+            </table>
+        </div>
+        <p1 id ="test">a</p1>
     </body>
 </html>
