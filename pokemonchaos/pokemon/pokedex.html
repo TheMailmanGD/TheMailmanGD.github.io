@@ -38,7 +38,11 @@
         .catch(error => console.error('Error loading pokemon data:', error));
     
     function createmovesettable(movesetdata) {
-        document.getElementById("test").innerHTML = movesetdata.levelup;
+        let html = "";
+        for (let level in movesetdata.levelup) {
+            html += `Level ${level}: ${movesetdata.levelup[level].join(", ")}<br>`;
+        }
+        document.getElementById("test").innerHTML = html;
     }
     function calculatebarcolour(statid, statvalue) {
         if (statvalue < 30) {
