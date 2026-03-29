@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            background-color: rgba(0,0,0,0.4);
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .modal-content button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            text-align: left;
+        }
+    </style>
+    <script src="pokemon/JSON/Pokemon/pokemon.js"></script>
+    <body>
+        <button id="formatButton" onclick="formatmodal()">Format:</button>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <p>Chaos Singles:</p>
+                <button onclick="format = 'AG'; closeFormatModal()">AG</button>
+                <button onclick="format = 'Ubers'; closeFormatModal()">Ubers</button>
+                <button onclick="format = 'OU'; closeFormatModal()">OU</button>
+                <button onclick="format = 'UU'; closeFormatModal()">UU</button>
+                <button onclick="format = 'RU'; closeFormatModal()">RU</button>
+                <button onclick="format = 'LC'; closeFormatModal()">LC</button>
+                <p>Chaos Doubles:</p>
+                <button onclick="format = 'Doubles AG'; closeFormatModal()">Doubles AG</button>
+                <button onclick="format = 'Doubles Ubers'; closeFormatModal()">Doubles Ubers</button>
+                <button onclick="format = 'Doubles OU'; closeFormatModal()">Doubles OU</button>
+                <button onclick="format = 'Doubles UU'; closeFormatModal()">Doubles UU</button>
+                <button onclick="format = 'Doubles RU'; closeFormatModal()">Doubles RU</button>
+                <button onclick="format = 'Doubles LC'; closeFormatModal()">Doubles LC</button>
+            </div>
+        </div>
+
+
+
+        <div id = "pkm1" class="pkm1">
+            <h3 id="pkm1name">Pokemon</h3>
+            <!-- nick -->
+            <p>Nickname:</p>
+            <input type="text" placeholder="Nickname">
+            <!-- gender (if gender is genderless dont have option)-->
+            <p>Gender:</p>
+            <select>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="genderless">Genderless</option>
+            </select>
+            <!-- shiny -->
+            <p>Shiny:</p>
+            <input type="checkbox" id="shiny" name="shiny">
+            <!-- level -->
+            <p>Level:</p>
+            <input type="number" placeholder="Level" min="1" max="100" value="100">
+            <!-- item -->
+            <p>Item:</p>
+            <button onclick="window.location.href='itemlist.html?format=' + format + '&pkmnum=' + pkmnum + '&pkm=' + pkm" id="pkm1item">Choose Item</button>
+            <!-- ability -->
+            <p>Ability:</p>
+            <select>
+                <option value="ability1" id="ability1">Ability 1</option>
+                <option value="ability2" id="ability2">Ability 2</option>
+                <option value="hiddenability" id="hiddenability">Hidden Ability</option>
+            </select>
+        </div>
+
+        <footer>
+            <button onclick="window.location.href='teambuilderpkmlist.html?format=' + format + '&pkmnum=' + pkmnum">Add Pokemon</button>
+        </footer>
+    </body>
+    <script>
+        var pkmnum = new URLSearchParams(window.location.search).get('pkmnum') || 1;
+        var format = new URLSearchParams(window.location.search).get('format') || "format";
+        var pkm = new URLSearchParams(window.location.search).get('pkm') || "";
+        var pkm1name = "";
+        var modal = document.getElementById('modal');
+        function onload() {
+            updateFormat();
+            generateabilities();
+            if (pkm != "" && pkmnum == 1) {
+                pkm1name = pkm;
+                document.getElementById("pkm1name").innerText = pkm1name;
+            }
+            const item = new URLSearchParams(window.location.search).get('item');
+            if (pkmnum == 1 && item != "" && item != null) {
+                document.getElementById("pkm1item").innerText = item;
+            }
+        }
+        function generateabilities() {
+            var pokemonName = pkm.toLowerCase();
+            var pokemonObj = window[pokemonName];
+            
+            console.log("Pokemon name:", pokemonName);
+            console.log("Pokemon object:", pokemonObj);
+            
+            if (!pokemonObj) {
+                console.warn("Pokemon object not found for:", pokemonName);
+                return;
+            }
+            
+            var ability1 = pokemonObj.ability1;
+            var ability2 = pokemonObj.ability2;
+            var hiddenability = pokemonObj.hiddenability;
+            
+            document.getElementById("ability1").innerText = "Ability 1: " + ability1;
+            
+            if (ability2 == "none" || !ability2) {
+                document.getElementById("ability2").style.display = "none";
+            } else {
+                document.getElementById("ability2").innerText = "Ability 2: " + ability2;
+                document.getElementById("ability2").style.display = "block";
+            }
+            if (hiddenability == "none" || !hiddenability) {
+                document.getElementById("hiddenability").style.display = "none";
+            } else {
+                document.getElementById("hiddenability").innerText = "Hidden Ability: " + hiddenability;
+                document.getElementById("hiddenability").style.display = "block";
+            }
+        }
+        function formatmodal() {
+            modal.style.display = "block";
+        }
+        function closeFormatModal() {
+            modal.style.display = "none";
+            updateFormat();
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        function updateFormat() {
+            document.getElementById("formatButton").innerText = format;
+        }
+        window.addEventListener('load', onload);
+    </script>
+</html>

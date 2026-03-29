@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #Search {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+#pokemonlist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#pokemonlist li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#pokemonlist li a:hover {
+  background-color: #eee;
+}
+</style>
+<script>
+function findsearcheditem() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("Search");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("pokemonlist");
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+<script>
+  var format = new URLSearchParams(window.location.search).get('format');
+  var pkmnum = new URLSearchParams(window.location.search).get('pkmnum');
+  var pkm = new URLSearchParams(window.location.search).get('pkm');
+
+  function itemlist() {
+    const links = document.querySelectorAll('a[item]');
+    links.forEach(link => {
+      const item = link.getAttribute('item');
+      link.href = `teambuilder.html?format=${format}&pkmnum=${pkmnum}&pkm=${pkm}&item=${item}`;
+    });
+  }
+  window.addEventListener('load', itemlist);
+</script>
+<input type="text" id="Search" onkeyup="findsearcheditem()" placeholder="Search.." title="Enter the name of a pokemon">
+
+<ul id="pokemonlist">
+    <div id="popular" class="popular">
+        <h3>Popular Items:</h3>
+        <li><a href="#" item="Air Balloon">Air Balloon</a></li>
+        <li><a href="#" item="Assault Vest">Assault Vest</a></li>
+        <li><a href="#" item="Choice Band">Choice Band</a></li>
+        <li><a href="#" item="Choice Scarf">Choice Scarf</a></li>
+        <li><a href="#" item="Choice Specs">Choice Specs</a></li>
+        <li><a href="#" item="Expert Belt">Expert Belt</a></li>
+        <li><a href="#" item="Focus Sash">Focus Sash</a></li>
+        <li><a href="#" item="Heavy-Duty Boots">Heavy-Duty Boots</a></li>
+        <li><a href="#" item="Leftovers">Leftovers</a></li>
+        <li><a href="#" item="Life Orb">Life Orb</a></li>
+        <li><a href="#" item="Loaded Dice">Loaded Dice</a></li>
+        <li><a href="#" item="Mental Herb">Mental Herb</a></li>
+        <li><a href="#" item="Power Herb">Power Herb</a></li>
+        <li><a href="#" item="Rocky Helmet">Rocky Helmet</a></li>
+        <li><a href="#" item="Salac Berry">Salac Berry</a></li>
+    </div>
+    <div id="otheritems" class="otheritems">
+        <h3>Items:</h3>
+        <li><a href="#" item="Ability Shield">Ability Shield</a></li>
+    </div>
+    <div id="pokemonspecific" class="pokemonspecific">
+        <h3>Pokemon-Specific Items:</h3>
+        <li><a href="#" item="Abomasite">Abomasite</a></li>
+</ul>
+</html>

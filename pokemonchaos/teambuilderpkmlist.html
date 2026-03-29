@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #Search {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+#pokemonlist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#pokemonlist li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#pokemonlist li a:hover {
+  background-color: #eee;
+}
+</style>
+<script>
+function findsearcheditem() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("Search");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("pokemonlist");
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+<script>
+  var format = new URLSearchParams(window.location.search).get('format');
+  var pkmnum = new URLSearchParams(window.location.search).get('pkmnum');
+
+  function loadpkmlist() {
+    if (format == "AG") {
+      document.getElementById("AG").style.display = "block";
+      document.getElementById("Ubers").style.display = "block";
+    } else if (format == "Ubers") {
+      document.getElementById("AG").style.display = "none";
+      document.getElementById("Ubers").style.display = "block";
+    }
+    
+    const links = document.querySelectorAll('a[data-pkm]');
+    links.forEach(link => {
+      const pkm = link.getAttribute('data-pkm');
+      link.href = `teambuilder.html?format=${format}&pkmnum=${pkmnum}&pkm=${pkm}`;
+    });
+  }
+  
+  window.addEventListener('load', loadpkmlist);
+</script>
+<input type="text" id="Search" onkeyup="findsearcheditem()" placeholder="Search.." title="Enter the name of a pokemon">
+
+<ul id="pokemonlist">
+    <div id="AG" class="AG">
+        <h3>AG:</h3>
+        <li><a href="#" data-pkm="Arceus">Arceus</a></li>
+        <li><a href="#" data-pkm="Gengar-Mega">Gengar-Mega</a></li>
+        <li><a href="#" data-pkm="Prismatentine-Mega">Prismatentine-Mega</a></li>
+        <li><a href="#" data-pkm="Zygarde-Mega">Zygarde-Mega</a></li>
+    </div>
+    <div id="Ubers" class="Ubers">
+        <h3>Ubers:</h3>
+        <li><a href="#" data-pkm="Archaludon">Archaludon</a></li>
+        <li><a href="#" data-pkm="Deoxys">Deoxys</a></li>
+        <li><a href="#" data-pkm="Deoxys-Attack">Deoxys-Attack</a></li>
+        <li><a href="#" data-pkm="Deoxys-Defence">Deoxys-Defence</a></li>
+        <li><a href="#" data-pkm="Deoxys-Speed">Deoxys-Speed</a></li>
+        <li><a href="#" data-pkm="Excadrill-Mega">Excadrill-Mega</a></li>
+        <li><a href="#" data-pkm="Kangaskhan-Mega">Kangaskhan-Mega</a></li>
+        <li><a href="#" data-pkm="Metagross-Mega">Metagross-Mega</a></li>
+        <li><a href="#" data-pkm="Prismatentine">Prismatentine</a></li>
+        <li><a href="#" data-pkm="Sneasler">Sneasler</a></li>
+        <li><a href="#" data-pkm="Tyranitar-Mega">Tyranitar-Mega</a></li>
+        <li><a href="#" data-pkm="Ursaluna-Bloodmoon">Ursaluna-Bloodmoon</a></li>
+        <li><a href="#" data-pkm="Volcarona">Volcarona</a></li>
+        <li><a href="#" data-pkm="Zeraora">Zeraora</a></li>
+        <li><a href="#" data-pkm="Zeraora-Mega">Zeraora-Mega</a></li>
+    </div>
+</ul>
+</html>
