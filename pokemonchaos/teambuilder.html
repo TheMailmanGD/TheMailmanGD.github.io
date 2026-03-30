@@ -92,7 +92,6 @@
         var modal = document.getElementById('modal');
         function onload() {
             updateFormat();
-            generateabilities();
             if (pkm != "" && pkmnum == 1) {
                 pkm1name = pkm;
                 document.getElementById("pkm1name").innerText = pkm1name;
@@ -101,37 +100,33 @@
             if (pkmnum == 1 && item != "" && item != null) {
                 document.getElementById("pkm1item").innerText = item;
             }
+            generateabilities();
         }
-        function generateabilities() {
+        function generateabilities() {         
+            if (!pkm) return;
+            
             var pokemonName = pkm.toLowerCase();
             var pokemonObj = window[pokemonName];
             
-            console.log("Pokemon name:", pokemonName);
-            console.log("Pokemon object:", pokemonObj);
+            if (!pokemonObj) return;
             
-            if (!pokemonObj) {
-                console.warn("Pokemon object not found for:", pokemonName);
-                return;
-            }
+            var ability1 = pokemonObj.ability1 || "Unknown";
+            var ability2 = pokemonObj.ability2 || "none";
+            var hiddenability = pokemonObj.hiddenability || "none";
             
-            var ability1 = pokemonObj.ability1;
-            var ability2 = pokemonObj.ability2;
-            var hiddenability = pokemonObj.hiddenability;
-            
-            document.getElementById("ability1").innerText = "Ability 1: " + ability1;
-            
-            if (ability2 == "none" || !ability2) {
+            if (ability2 == "none") {
                 document.getElementById("ability2").style.display = "none";
             } else {
                 document.getElementById("ability2").innerText = "Ability 2: " + ability2;
-                document.getElementById("ability2").style.display = "block";
+                document.getElementById("ability2").style.display = "";
             }
-            if (hiddenability == "none" || !hiddenability) {
+            if (hiddenability == "none") {
                 document.getElementById("hiddenability").style.display = "none";
             } else {
                 document.getElementById("hiddenability").innerText = "Hidden Ability: " + hiddenability;
-                document.getElementById("hiddenability").style.display = "block";
+                document.getElementById("hiddenability").style.display = "";
             }
+            document.getElementById("ability1").innerText = "Ability 1: " + ability1;
         }
         function formatmodal() {
             modal.style.display = "block";

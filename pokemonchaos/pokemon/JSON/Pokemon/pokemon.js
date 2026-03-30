@@ -1,4 +1,4 @@
-var archaludonms = {
+var archaludon = {
 	"pkm": "archaludon",
 	"type1": "steel",
 	"type2": "dragon",
@@ -19,5 +19,5 @@ var archaludonms = {
 	"ability1" : "stamina",
 	"ability2" : "sturdy",
 	"hiddenability" : "stalwart"
-}
-const archaludon = JSON.parse(archaludonms);
+};
+window.archaludon = archaludon;
