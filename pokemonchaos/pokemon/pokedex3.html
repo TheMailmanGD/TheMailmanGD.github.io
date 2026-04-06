@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    function titleCase(s) {
+    return s.toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+    var pokemonData;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const pokemonName = urlParams.get('pokemon');
+    const pokemonMoveset = urlParams.get('pokemon') + "ms";
+
+    fetch(`./JSON/Movesets/${pokemonMoveset}.json`)
+        .then(response => response.json())
+        .then(data => {
+            alert(data);
+            createmovesettable(data);
+        })
+        .catch(error => console.error('Error loading moveset data:', error));
+
+    fetch(`./JSON/Pokemon/${pokemonName}.json`)
+        .then(response => response.json())
+        .then(data => {
+            pokemonData = data;
+            calculatebarcolour("hp", pokemonData.hp);
+            calculatebarcolour("attack", pokemonData.atk);
+            calculatebarcolour("defense", pokemonData.def);
+            calculatebarcolour("specialAttack", pokemonData.spa);
+            calculatebarcolour("specialDefense", pokemonData.spd);
+            calculatebarcolour("speed", pokemonData.spe);
+            calculatebars();
+            settext();
+        })
+        .catch(error => console.error('Error loading pokemon data:', error));
+    
+    function createmovesettable(movesetdata) {
+        let html = "";
+        for (let level in movesetdata.levelup) {
+            html += `Level ${level}: ${movesetdata.levelup[level].join(", ")}<br>`;
+        }
+        document.getElementById("test").innerHTML = html;
+    }
+    function calculatebarcolour(statid, statvalue) {
+        if (statvalue < 30) {
+            document.getElementById(statid).style.backgroundColor = "red";
+        } else if (statvalue < 60) {
+            document.getElementById(statid).style.backgroundColor = "darkorange";
+        } else if (statvalue < 90) {
+            document.getElementById(statid).style.backgroundColor = "yellow";
+        } else if (statvalue < 120) {
+            document.getElementById(statid).style.backgroundColor = "palegreen";
+        } else if (statvalue < 150) {
+            document.getElementById(statid).style.backgroundColor = "green";
+        }
+        else {
+            document.getElementById(statid).style.backgroundColor = "rgb(45, 220, 219)";
+        }
+    }
+    function calculatebars() {
+        document.getElementById("hp").style.width = pokemonData.hp + "px";
+        document.getElementById("attack").style.width = pokemonData.atk + "px";
+        document.getElementById("defense").style.width = pokemonData.def + "px";
+        document.getElementById("specialAttack").style.width = pokemonData.spa + "px";
+        document.getElementById("specialDefense").style.width = pokemonData.spd + "px";
+        document.getElementById("speed").style.width = pokemonData.spe + "px";
+
+        document.getElementById("hpvalue").innerText = pokemonData.hp;
+        document.getElementById("attackvalue").innerText = pokemonData.atk;
+        document.getElementById("defensevalue").innerText = pokemonData.def;
+        document.getElementById("specialAttackvalue").innerText = pokemonData.spa;
+        document.getElementById("specialDefensevalue").innerText = pokemonData.spd;
+        document.getElementById("speedvalue").innerText = pokemonData.spe;
+    }
+    function settext() {
+        document.getElementById("name").innerText = titleCase(pokemonData.pkm);
+        if (pokemonData.type2 != "none") {
+            document.getElementById("type").innerText = titleCase(pokemonData.type1) + "/" + titleCase(pokemonData.type2);
+        } else {
+            document.getElementById("type").innerText = titleCase(pokemonData.type1);
+        }
+        document.getElementById("ability1").innerText = "Ability: " + titleCase(pokemonData.ability1);
+        if (pokemonData.ability2 != "none") {
+            document.getElementById("ability2").innerText = "Secondary Ability: " + titleCase(pokemonData.ability2);
+        } else {
+            document.getElementById("ability2").innerText = "";
+        }
+        if (pokemonData.hiddenability != "none") {
+            document.getElementById("hiddenability").innerText = "Hidden Ability: " + titleCase(pokemonData.hiddenability);
+        } else {
+            document.getElementById("hiddenability").innerText = "";
+        }
+        document.getElementById("height").innerText = "Height: " + pokemonData.height;
+        document.getElementById("weight").innerText = "Weight: " + pokemonData.weight;
+
+        document.getElementById("classification").innerText = "Classification: " + titleCase(pokemonData.classification);
+        document.getElementById("catchrate").innerText = "Catch Rate: " + pokemonData.catchrate;
+        document.getElementById("evolutionlv").innerText = "Evolves at level " + pokemonData.evolutionlevel;
+        document.getElementById("dex").innerText = pokemonData.dex;
+        document.getElementById("habitat").innerText = "This pokemon can be found at " + titleCase(pokemonData.habitat[0]) + " in the " + titleCase(pokemonData.habitat[1]);
+    }
+</script>
+<style>
+    .statnames {
+        display: inline-block;
+        width: 20px;
+        text-align: right;
+    }
+    span {
+        display: inline-block;
+        height: 12px;
+        background-color: red;
+        outline-style: solid;
+        outline-color: black;
+        outline-width: 1px;
+        border-radius: 3px;
+    }
+    tr {
+        text-align: left;
+    }
+    .maininfo {
+        display: inline-block;
+    }
+</style>
+    <body>
+        <div class="maininfo">
+            <h1 id="name">?</h1>
+            <p id="type">Type: ?</p>
+            <p id="ability1">Ability: ?</p>
+            <p id="ability2">Secondary Ability: None</p>
+            <p id="hiddenability">Hidden Ability: ?</p>
+            <p id="height">Height: ?m</p>
+            <p id="weight">Weight: ?kg</p>
+        </div>
+        <div class="otherinfo">
+            <p id="classification">Classification: ?</p>
+            <p id="catchrate">Catch Rate: ?</p>
+            <p id="evolutionlv">Evolves at level ?</p>
+            <p id="dex">This pokemon ______</p>
+            <p id="habitat">This pokemon lives at ____ in ______</p>
+        </div>
+        <div class="statnames">
+            <table>
+                <tr>
+                    <td>HP:</td>
+                    <td id="hpvalue">0</td>
+                    <td><span id="hp"></span></td>
+                </tr>
+                <tr>
+                    <td>Atk:</td>
+                    <td id="attackvalue">0</td>
+                    <td><span id="attack"></span></td>
+                </tr>
+                <tr>
+                    <td>Def:</td>
+                    <td id="defensevalue">0</td>
+                    <td><span id="defense"></span></td>
+                </tr>
+                <tr>
+                    <td>SpA:</td>
+                    <td id="specialAttackvalue">0</td>
+                    <td><span id="specialAttack"></span></td>
+                </tr>
+                <tr>
+                    <td>SpD:</td>
+                    <td id="specialDefensevalue">0</td>
+                    <td><span id="specialDefense"></span></td>
+                </tr>
+                <tr>
+                    <td>Spe:</td>
+                    <td id="speedvalue">0</td>
+                    <td><span id="speed"></span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="moveset">
+            <table>
+                <tr>
+                    <th>Level:</th>
+                    <th>Name:</th>
+                    <th>Type:</th>
+                    <th>Category:</th>
+                    <th>Power:</th>
+                    <th>Accuracy:</th>
+                </tr>
+            </table>
+        </div>
+        <p1 id ="test">a</p1>
+    </body>
+</html>

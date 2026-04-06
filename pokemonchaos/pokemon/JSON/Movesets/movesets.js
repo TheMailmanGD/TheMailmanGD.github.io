@@ -1,6 +1,7 @@
 var psyslug = {
 	"levelup" : {
-		"1" : ["tackle", "harden"],
+		"1" : ["tackle"], 
+		"2" : ["harden"],
 		"3" : ["psyblast"],
 		"5" : ["teleport"],
 		"10" : ["confusion"],
@@ -61,5 +62,7 @@ var psyslug = {
 }
 var psyculimax = psyslug;
 var ascendropod = psyslug;
-
+window.psyslug = psyslug;
+window.psyculimax = psyculimax;
+window.ascendropod = ascendropod;
 

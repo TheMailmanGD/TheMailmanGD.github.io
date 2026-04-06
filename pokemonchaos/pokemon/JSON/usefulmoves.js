@@ -1,3 +1,7 @@
-var usefulmoves = {
-    
-}
+var usefulmoves = [
+
+]
+var usuallyuselessmoves = [
+    "Psyblast",
+
+]
