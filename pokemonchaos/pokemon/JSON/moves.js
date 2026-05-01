@@ -15,5 +15,4 @@ var psyblast = {
         },
     },
     desc : ""
-
 };
