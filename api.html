@@ -1,0 +1,36 @@
+<div id="output"></div>
+<script>
+async function loadText(file) {
+  const response = await fetch(file);
+  const awesome = await response.json();
+  const output = document.getElementById("output");
+
+  for (let i = 0; i < awesome.data.bankaraSchedules.nodes.length; i++) {
+    const node = awesome.data.bankaraSchedules.nodes[i];
+    const setting = node.bankaraMatchSettings?.[0];
+    const ruleName = setting?.vsRule?.name;
+
+    if (ruleName === "Tower Control" || ruleName === "Rainmaker") {
+      const stage1 = setting.vsStages[0]?.name;
+      const image1 = setting.vsStages[0]?.image?.url;
+      const stage2 = setting.vsStages[1]?.name;
+      const image2 = setting.vsStages[1]?.image?.url;
+      const startTime = new Date(new Date(node.startTime).getTime())
+        .toLocaleString('en-AU', { dateStyle: 'medium', timeStyle: 'short' });
+
+      output.innerHTML += `
+        <p>
+          Start: ${startTime}<br>
+          ${ruleName}<br>
+          Stage 1: ${stage1}<br>
+          <img width="100" src="${image1}" alt="${stage1}"><br>
+          Stage 2: ${stage2}<br>
+          <img width="100" src="${image2}" alt="${stage2}"><br>
+        </p>
+      `;
+    }
+  }
+}
+
+loadText("https://splatoon3.ink/data/schedules.json");
+</script>
